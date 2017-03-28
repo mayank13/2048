@@ -33,3 +33,30 @@ function printGrid(arr){
 initializeGrid(arr);
 //printGrid();
 
+function move_left(col){
+	var j = 0 ; 
+	var previous = null;
+	var new_col = [0,0,0,0];
+	for (var i = 0 ; i < col.length ; i++){
+		if ( col[i] != 0){
+			if ( previous == null){
+				previous = col[i];
+			}else{
+				if (previous == col[i]){
+					new_col[j] = 2 *col[i];
+					j++;	
+					previous = null;
+				}else{
+					new_col[j] = previous;
+					j++;
+					previous = col[i];
+				}
+				
+			}
+		}
+	}
+	if(previous != null){
+		new_col[j] = previous;
+	}
+	return new_col;
+}
