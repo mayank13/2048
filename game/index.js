@@ -1,4 +1,3 @@
-const arrayUtil = require('./util/gridHelper')
 const game = require('./game.js')
 
 var stdin = process.openStdin();
