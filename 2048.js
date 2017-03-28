@@ -30,10 +30,10 @@ function printGrid(arr){
 	}
 }
 
-initializeGrid(arr);
+//initializeGrid(arr);
 //printGrid();
 
-function move_left(col){
+function move_left_single_row(col){
 	var j = 0 ; 
 	var previous = null;
 	var new_col = [0,0,0,0];
@@ -60,3 +60,87 @@ function move_left(col){
 	}
 	return new_col;
 }
+
+//Test move_left
+//move_left_single_row([2,2,2,8])
+
+function move_left(arr){
+	for ( var i = 0 ; i < NO_OF_ROWS ; i++ ){
+		arr[i] = move_left_single_row(arr[i]);
+	}
+	//printGrid(arr)
+}
+
+function rotateMatrix(arr)
+{   
+    var N = arr[0].length;
+    // Consider all squares one by one
+    for (var x = 0; x < N / 2; x++)
+    {
+        // Consider elements in group of 4 in 
+        // current square
+        for (var y = x; y < N-x-1; y++)
+        {
+            // store current cell in temp variable
+            var temp = arr[x][y];
+ 
+            // move values from right to top
+            arr[x][y] = arr[y][N-1-x];
+ 
+            // move values from bottom to right
+            arr[y][N-1-x] = arr[N-1-x][N-1-y];
+ 
+            // move values from left to bottom
+            arr[N-1-x][N-1-y] = arr[N-1-y][x];
+ 
+            // assign temp to left
+            arr[N-1-y][x] = temp;
+        }
+    }
+}
+
+
+function move(arr,direction){
+	switch (direction) {
+		  case 1:
+		  move_left(arr);
+		    break;
+		  case 2:
+		    rotateMatrix(arr);
+		    rotateMatrix(arr);
+		    move_left(arr);
+		    rotateMatrix(arr);
+		    rotateMatrix(arr);
+		    break;
+		  case 3:
+		    rotateMatrix(arr);
+		    move_left(arr);
+		    rotateMatrix(arr);
+		    rotateMatrix(arr);
+		    rotateMatrix(arr);
+		    break;
+		  case 4:
+		    rotateMatrix(arr);
+		    rotateMatrix(arr);
+		    rotateMatrix(arr);
+		    move_left(arr);
+		    rotateMatrix(arr);
+		    break;
+		  default:
+		   console.log("Rotations are not required")
+}
+
+}
+
+
+initializeGrid(arr);
+console.log("initializeGrid");
+printGrid(arr);
+console.log("move left");
+move(arr,1)
+printGrid(arr);
+console.log("move left done");
+console.log("move right");
+move(arr,2);
+printGrid(arr)
+console.log("move right done");
