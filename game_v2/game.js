@@ -2,7 +2,7 @@ const gridHelper = require('./util/gridHelper.js');
 var game = (function() {
 
   var grid = [];
-  var gridSize = size || 4;
+  var gridSize ;
   var currentHighScore;
   var highScore;
 

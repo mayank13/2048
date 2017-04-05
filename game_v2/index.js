@@ -1,7 +1,7 @@
 const game = require('./game.js')
 
 var stdin = process.openStdin();
-game.init(8,32);
+game.init(4,16);
 
 stdin.addListener("data", function(d) {
     
